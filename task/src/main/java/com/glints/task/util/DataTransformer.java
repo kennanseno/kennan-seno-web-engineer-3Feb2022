@@ -20,7 +20,14 @@ public class DataTransformer {
         this.path = path;
     }
 
-    public void transform(RestaurantRepository restaurantRepository, ScheduleRepository scheduleRepository) throws FileNotFoundException {
+    /**
+     *  Method to transform raw data(raw-data.csv) into information that can be consumed
+     *  by the project and persisted in the database.
+     * 
+     * @param restaurantRepository
+     * @param scheduleRepository
+     */
+    public void transform(RestaurantRepository restaurantRepository, ScheduleRepository scheduleRepository) {
         try (Scanner scanner = new Scanner(new File(path))) {
 			while (scanner.hasNextLine()) {
 	
@@ -47,7 +54,6 @@ public class DataTransformer {
 					String openingTime = timeInfo[1].toUpperCase().trim();
                     scheduleObject.setOpeningTime(openingTime);
 
-					// String[] dayOfTheWeek = timeInfo[0].split("\\s?-\\s?|,\\s?");
                     String[] dayOfTheWeekArray = timeInfo[0].split("\\s?,\\s?");
                     List<String> dayOfTheWeekList = Arrays.asList(dayOfTheWeekArray);
 
@@ -67,7 +73,9 @@ public class DataTransformer {
 				});
 				
 			}
-		}
+		} catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
     
     public List<String> getRecordFromLine(String line, String delimiter) {
