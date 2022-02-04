@@ -54,7 +54,7 @@ public class DataTransformer {
 					String openingTime = timeInfo[1].toUpperCase().trim();
                     schedule.setOpeningTime(openingTime);
 
-                    List<String> dayOfTheWeekList = Arrays.asList(timeInfo[0].split("\\s?,\\s?"););
+                    List<String> dayOfTheWeekList = Arrays.asList(timeInfo[0].split("\\s?,\\s?"));
                     dayOfTheWeekList.forEach(dayOfTheWeek -> {
 
                         // check if Mon - Sun pattern and update accordingly
