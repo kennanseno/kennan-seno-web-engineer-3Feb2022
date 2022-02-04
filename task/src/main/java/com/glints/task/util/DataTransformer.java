@@ -39,37 +39,35 @@ public class DataTransformer {
                 restaurantRepository.save(restaurant);
 
 				// Transform to multiple schedule
-				List<String> scheduleInfo = getRecordFromLine(restaurantInfo.get(1), "\\s?/\\s?");
+				List<String> scheduleInfoList = getRecordFromLine(restaurantInfo.get(1), "\\s?/\\s?");
 
-				scheduleInfo.forEach(schedule -> {
-                    Schedule scheduleObject = new Schedule();
+				scheduleInfoList.forEach(scheduleInfo -> {
+                    Schedule schedule = new Schedule();
 
-                    //Get Closing time in schedule string
-					String[] timeInfo  = schedule.split("\\s{1}-\\s{1}(?=\\d{1,2})");
+                    // Get Closing time in schedule string
+					String[] timeInfo  = scheduleInfo.split("\\s{1}-\\s{1}(?=\\d{1,2})");
 					String closingTime = timeInfo[1].toUpperCase().replace("\"", "").trim();
-                    scheduleObject.setClosingTime(closingTime);
+                    schedule.setClosingTime(closingTime);
 					
 					// Split to extract opening time
 					timeInfo = timeInfo[0].split("\\s{1}(?=\\d{1,2})");
 					String openingTime = timeInfo[1].toUpperCase().trim();
-                    scheduleObject.setOpeningTime(openingTime);
+                    schedule.setOpeningTime(openingTime);
 
-                    String[] dayOfTheWeekArray = timeInfo[0].split("\\s?,\\s?");
-                    List<String> dayOfTheWeekList = Arrays.asList(dayOfTheWeekArray);
-
+                    List<String> dayOfTheWeekList = Arrays.asList(timeInfo[0].split("\\s?,\\s?"););
                     dayOfTheWeekList.forEach(dayOfTheWeek -> {
 
                         // check if Mon - Sun pattern and update accordingly
                         if(dayOfTheWeek.matches(".*\\s?-\\s?.*")) {
                             String[] consecutiveDaysOfTheWeek = dayOfTheWeek.split("\\s?-\\s?");
-                            scheduleObject.setSchedule(consecutiveDaysOfTheWeek[0], consecutiveDaysOfTheWeek[1]);
+                            schedule.setSchedule(consecutiveDaysOfTheWeek[0], consecutiveDaysOfTheWeek[1]);
                         } else {
-                            scheduleObject.setSchedule(dayOfTheWeek);
+                            schedule.setSchedule(dayOfTheWeek);
                         }
                     });
 
-					scheduleObject.setRestaurant(restaurant);
-                    scheduleRepository.save(scheduleObject);
+					schedule.setRestaurant(restaurant);
+                    scheduleRepository.save(schedule);
 				});
 				
 			}
@@ -80,7 +78,7 @@ public class DataTransformer {
     
     public List<String> getRecordFromLine(String line, String delimiter) {
         List<String> values = new ArrayList<String>();
-        try (Scanner rowScanner = new Scanner(line)) {
+        try(Scanner rowScanner = new Scanner(line)) {
             rowScanner.useDelimiter(delimiter);
             while (rowScanner.hasNext()) {
                 values.add(rowScanner.next());

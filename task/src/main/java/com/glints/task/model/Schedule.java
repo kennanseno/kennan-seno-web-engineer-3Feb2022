@@ -59,7 +59,7 @@ public class Schedule {
             startingDay = "WEDS";
         }
 
-        for (Integer startingDayIndex = dayOfTheWeek.indexOf(startingDay); startingDayIndex <= dayOfTheWeek.indexOf(endDay); startingDayIndex++) {
+        for(Integer startingDayIndex = dayOfTheWeek.indexOf(startingDay); startingDayIndex <= dayOfTheWeek.indexOf(endDay); startingDayIndex++) {
             setSchedule(dayOfTheWeek.get(startingDayIndex));
         }
     }
