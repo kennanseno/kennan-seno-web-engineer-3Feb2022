@@ -5,8 +5,8 @@ CREATE TABLE restaurant (
 
 CREATE TABLE schedule (
     id SERIAL PRIMARY KEY,
-    opening_time VARCHAR(5) NOT NULL,
-    closing_time VARCHAR(5) NOT NULL,
+    opening_time VARCHAR(12) NOT NULL,
+    closing_time VARCHAR(12) NOT NULL,
     monday BOOLEAN NOT NULL,
     tuesday BOOLEAN NOT NULL,
     wednesday BOOLEAN NOT NULL,
