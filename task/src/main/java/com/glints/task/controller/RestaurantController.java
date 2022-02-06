@@ -31,8 +31,13 @@ public class RestaurantController {
 		return restaurant;
 	}
 
-	@GetMapping(path="/restaurant/search")
-	public @ResponseBody Restaurant getRestaurant(@RequestParam String name) {
+	@GetMapping(path="/restaurant/search", params = { "name" })
+	public @ResponseBody Restaurant getRestaurantByName(@RequestParam(value = "name") String name) {
 		return restaurantRepository.findByName(name);
+	}
+
+	@GetMapping(path="/restaurant/search", params = { "openingTime" })
+	public @ResponseBody List<Restaurant> getRestaurantByTime(@RequestParam(value = "openingTime") String openingTime) {
+		return restaurantRepository.getAllBySchedulesOpeningTime(openingTime);
 	}
 }
