@@ -8,6 +8,6 @@ import com.glints.task.model.Restaurant;
 
 public interface RestaurantRepository extends CrudRepository<Restaurant, Integer> {
 
-    Restaurant findByName(String name);
-    List<Restaurant> getAllBySchedulesOpeningTime(String openingTime);
+    Restaurant findByNameIgnoreCase(String name);
+    List<Restaurant> getAllBySchedulesOpeningTimeIgnoreCase(String openingTime);
 }
