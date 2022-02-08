@@ -10,7 +10,6 @@ const RestaurantInfo = (props) => {
 const Schedule = (props) => {
     return (
         <div>
-            <h1>Schedule</h1>
             {props.schedules?.map((schedule) => (
                 <div key={schedule.id}>
                     Opening time: {schedule.openingTime}

@@ -15,7 +15,6 @@ const slice = createSlice({
         restaurantInfoReceived: (posts, action) => {
             posts.list = action.payload;
             posts.loading = false;
-            console.log('restaurantInfoReceived', posts.action);
         },
 
         restaurantInfoRequestFailed: (posts, action) => {
@@ -37,8 +36,6 @@ export const loadRestaurantBy = (queryValue, queryParamName) => (dispatch) => {
         onSuccess: restaurantInfoReceived.type,
         onError: restaurantInfoRequestFailed.type,
     }
-
-    console.log('loadRestaurantByName:action', action);
 
     return dispatch(
         apiCallBegan(action)
