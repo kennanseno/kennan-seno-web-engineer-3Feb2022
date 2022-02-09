@@ -1,14 +1,14 @@
 import { Provider } from "react-redux";
 import configureStore from "./store/configureStore";
-import Posts from "./pages/restaurant-scheduler";
 import "./App.css";
+import RestaurantScheduler from "./pages/restaurant-scheduler";
 
 const store = configureStore();
 
  const App = () => {
     return (
         <Provider store={store}>
-            <Posts />
+            <RestaurantScheduler />
         </Provider>
     );
 }

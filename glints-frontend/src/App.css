@@ -1,38 +1,30 @@
-.App {
+.restaurant-scheduler {
+  padding: 50px 150px;
+}
+
+.search-bar {
+  display: inline-block;
+  width: 100%;
+  padding-top: 10px;
+}
+
+.search-input {
+  padding: 11px;
+}
+
+.search-btn {
+  padding: 11px 15px;
+}
+
+.restaurant-info {
+  width: 100%;
+}
+
+.no-result {
   text-align: center;
+  margin-top: 100px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.restaurant-info-container, .schedule-container {
+  margin-left: 15px;
 }

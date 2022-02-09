@@ -5,32 +5,39 @@ import SearchBar from "../components/search-bar";
 import { nanoid } from "@reduxjs/toolkit";
 
 const RestaurantScheduler = () => {
-    const dispatch = useDispatch();
-    const restaurants = useSelector((state) => state.list);
+  const dispatch = useDispatch();
+  const restaurants = useSelector((state) => state.list);
 
-    const searchRestaurantSchedule = (restaurantName, queryParamName) => {
-        dispatch(loadRestaurantBy(restaurantName, queryParamName));
-    }
+  const searchRestaurantSchedule = (restaurantName, queryParamName) => {
+    dispatch(loadRestaurantBy(restaurantName, queryParamName));
+  };
 
-    return (
-        <div>
-            <SearchBar searchRestaurantSchedule={searchRestaurantSchedule}></SearchBar>
-            {
-                restaurants.length === 0 || !restaurants ?
-                <h1> No restaurant found for that search.</h1> :
-                <div>
-                    <h1>Schedule</h1>
-                    {
-                    restaurants instanceof Array ?
-                    restaurants.map((restaurant) => (
-                        <RestaurantInfo key={nanoid()} restaurants={restaurant}></RestaurantInfo>
-                    )) :
-                    <RestaurantInfo restaurants={restaurants}></RestaurantInfo>
-                }
-                </div>
-}
-        </div>
-    );
+  return (
+    <div className="container restaurant-scheduler">
+      <SearchBar
+        searchRestaurantSchedule={searchRestaurantSchedule}
+      ></SearchBar>
+      <div className="restaurant-info">
+        {restaurants.length === 0 || !restaurants ? (
+          <h1 className="no-result">No restaurant found for that search.</h1>
+        ) : (
+          <div>
+            <h1>Schedule</h1>
+            {restaurants instanceof Array ? (
+              restaurants.map((restaurant) => (
+                <RestaurantInfo
+                  key={nanoid()}
+                  restaurants={restaurant}
+                ></RestaurantInfo>
+              ))
+            ) : (
+              <RestaurantInfo restaurants={restaurants}></RestaurantInfo>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default RestaurantScheduler;
