@@ -1,4 +1,5 @@
 import { useState } from "react";
+import SearchInput from "./search-input";
 
 const SearchBar = (props) => {
   const queryName = {
@@ -18,7 +19,7 @@ const SearchBar = (props) => {
 
     // Set default value on query type change
     if (event.target.value === "name") setInputValue("");
-    if (event.target.value === "time") setInputValue("11:30 AM");
+    if (event.target.value === "time") setInputValue("8 AM");
   };
 
   return (
@@ -54,32 +55,6 @@ const SearchBar = (props) => {
         </button>
       </div>
     </div>
-  );
-};
-
-const SearchInput = (props) => {
-  return props.queryName === "name" ? (
-    <div class="input-group flex-nowrap">
-      <input
-        value={props.value}
-        onChange={props.handleInputChange}
-        type="text"
-        class="form-control search-input"
-        placeholder="Resturant Name"
-        aria-label="Username"
-        aria-describedby="addon-wrapping"
-      ></input>
-    </div>
-  ) : (
-    <select
-      class="form-select form-select-lg mb-3"
-      aria-label=".form-select-lg example"
-      value={props.value}
-      onChange={props.handleInputChange}
-    >
-      <option value="11 AM">11 AM</option>
-      <option value="11:30 AM">11:30 AM</option>
-    </select>
   );
 };
 
